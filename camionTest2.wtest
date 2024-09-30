@@ -1,0 +1,45 @@
+import cosas2.*
+import camion2.*
+
+describe "group of test for camion" {
+
+  test "agrega paquete de ladrillo" {
+    ladrillos.cantidad(50)
+    camion.cargar(ladrillos)
+
+    assert.equals(1100, camion.pesoTotal())
+    assert.equals(ladrillos, camion.primerPeligro(2))
+  }
+
+  test "agrega antiaereo" {
+    antiaereo.equipo(misiles)
+    camion.cargar(antiaereo)
+
+    assert.equals(1300, camion.pesoTotal())
+    assert.equals(antiaereo, camion.primerPeligro(100))
+  }
+
+  test "agrega contenedor con 3 cosas" {
+    ladrillos.cantidad(50)
+    arenal.peso(100)
+    contenedor.agregarCosa(ladrillos)
+    contenedor.agregarCosa(arenal)
+    contenedor.agregarCosa(knightRider)
+
+    camion.cargar(contenedor)
+
+    assert.equals(1800, camion.pesoTotal())
+    assert.equals(contenedor, camion.primerPeligro(10))
+  }
+
+  test "agrega embalaje con residuo" {
+    residuos.peso(30)
+    embalaje.contenido(residuos)
+
+    camion.cargar(embalaje)
+
+    assert.equals(1030, camion.pesoTotal())
+    assert.equals(embalaje, camion.primerPeligro(10))
+  }
+
+}
