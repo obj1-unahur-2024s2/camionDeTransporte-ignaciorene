@@ -2,8 +2,22 @@ import cosas.*
 
 describe "group of test for cosas" {
 
-  test "first test" {
-    assert.that(true)
+  test "Embalaje con residuos radioactivos" {
+    residuos.peso(30)
+    embalaje.contenido(residuos)
+    assert.equals(30, embalaje.peso())
+    assert.equals(100, embalaje.peligrosidad())
+  }
+
+  test "contenedor contiene 3 elementos" {
+    ladrillos.cantidad(50)
+    arenal.peso(100)
+    contenedor.agregarCosa(ladrillos)
+    contenedor.agregarCosa(arenal)
+    contenedor.agregarCosa(knightRider)
+
+    assert.equals(800, contenedor.peso())
+    assert.equals(10, contenedor.peligrosidad())
   }
 
 }
